@@ -8,7 +8,7 @@ export type BudgetState = {
 };
 
 export const initialState: BudgetState = {
-  budget: 0,
+  budget: 10,
 };
 
 export const budgetReducer = (
