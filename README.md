@@ -48,3 +48,4 @@ export default tseslint.config({
   },
 })
 ```
+me quede en el video 207
