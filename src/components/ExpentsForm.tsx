@@ -8,7 +8,7 @@ import ErrorMessage from "./ErrorMessage";
 import { useBudget } from "../hooks/useBudget";
 const ExpentsForm = () => {
   const [expense, setExpense] = useState<DraftExpense>({
-    amount: 0,
+    amount:0,
     expenseName: "",
     category: "",
     date: new Date(),
@@ -25,7 +25,8 @@ const ExpentsForm = () => {
     console.log(isAmountField);
     setExpense({
       ...expense,
-      [name]: isAmountField ? +value : value,
+     /*  [name]: isAmountField ? +value : value, */
+      [name]: isAmountField ? (value === "" ? value : +value) : value,
     });
   };
 
