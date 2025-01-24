@@ -47,6 +47,13 @@ const ExpentsForm = () => {
     }
    //agregar un nuevo gasto
    dispatch({ type: "add-expense", payload: { expense } })
+   //reiniciar el formulario
+   setExpense({
+    amount: 0,
+    expenseName: "",
+    category: "",
+    date: new Date(),
+   })
   };
   return (
     <form className="space-y-5" onSubmit={handleSubmit}>

@@ -1,3 +1,4 @@
+import { Modal } from "react-native";
 import { DraftExpense, Expense } from "../types";
 import { v4 as uuidv4 } from "uuid";
 
@@ -59,7 +60,8 @@ export const budgetReducer = (
     const expense = createExpense(action.payload.expense)
     return {
       ...state,
-      expenses: [...state.expenses, expense ]
+      expenses: [...state.expenses, expense ],
+      modal: false
     };
   }
   return state
