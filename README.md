@@ -48,4 +48,4 @@ export default tseslint.config({
   },
 })
 ```
-me quede en el video 207
+me quede en el video 213 falta
