@@ -1,4 +1,4 @@
-import { Modal } from "react-native";
+
 import { DraftExpense, Expense } from "../types";
 import { v4 as uuidv4 } from "uuid";
 
@@ -9,7 +9,8 @@ export type BudgetActions =
     }
   | { type: "show-modal" }
   | { type: "close-modal" }
-  | { type: "add-expense" , payload: { expense: DraftExpense } };
+  | { type: "add-expense" , payload: { expense: DraftExpense } } 
+  | { type: "remove-expense" , payload: { id: Expense["id"] } };
 
 export type BudgetState = {
   budget: number;
@@ -63,6 +64,13 @@ export const budgetReducer = (
       expenses: [...state.expenses, expense ],
       modal: false
     };
+  }
+
+  if (action.type === "remove-expense") {
+    return {
+      ...state,
+      expenses: state.expenses.filter(expense => expense.id !== action.payload.id)
+    }
   }
   return state
 };

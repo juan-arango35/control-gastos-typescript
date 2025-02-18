@@ -10,6 +10,7 @@ import {
   TrailingActions,
 } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
+import { useBudget } from "../hooks/useBudget";
 type ExpenseDetailsProps = {
   expense: Expense;
 };
@@ -26,6 +27,10 @@ export function formatDate(dateStr: string): string {
 }
 
 const ExpenseDetails = ({ expense }: ExpenseDetailsProps) => {
+
+
+const {dispatch} = useBudget()
+
   const cateforyInfo = useMemo(
     () => categories.filter((cat) => cat.id === expense.category)[0],
     [expense]
@@ -38,7 +43,7 @@ const ExpenseDetails = ({ expense }: ExpenseDetailsProps) => {
   );
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction onClick={() => {}}
+      <SwipeAction onClick={() => dispatch({ type: "remove-expense", payload: { id: expense.id } })}
         destructive={true}
         >Eliminar</SwipeAction>
     </TrailingActions>
