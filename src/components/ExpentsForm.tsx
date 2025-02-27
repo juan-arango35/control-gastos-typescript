@@ -6,6 +6,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import type { DraftExpense, Value } from "../types";
 import ErrorMessage from "./ErrorMessage";
 import { useBudget } from "../hooks/useBudget";
+
 const ExpentsForm = () => {
   const [expense, setExpense] = useState<DraftExpense>({
     amount:0,
@@ -71,7 +72,7 @@ const ExpentsForm = () => {
   return (
     <form className="space-y-5" onSubmit={handleSubmit}>
       <legend className="uppercase font-black text-2xl border-b-4 border-blue-500 py-2 text-center">
-        Nuevo Gasto
+        {state.editingId ? "Editar Gasto" : "Nuevo Gasto"}
       </legend>
       { error && <ErrorMessage>{error}</ErrorMessage> }
       <div className="flex flex-col gap-2">
@@ -134,7 +135,7 @@ const ExpentsForm = () => {
       <input
         type="submit"
         className="bg-blue-600 cursor-pointer w-full p-2 text-white uppercase font-bold rounded-lg"
-        value={"Agregar Gasto"}
+        value= {state.editingId ? "Guardar Cambios" : "Agregar Gasto"}
       />
     </form>
   );
