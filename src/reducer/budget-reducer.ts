@@ -1,5 +1,5 @@
 
-import { DraftExpense, Expense } from "../types";
+import { Category, DraftExpense, Expense } from "../types";
 import { v4 as uuidv4 } from "uuid";
 
 export type BudgetActions =
@@ -14,12 +14,14 @@ export type BudgetActions =
   | { type: "get-expense-by-id"; payload: { id: Expense["id"] } }
   | {type: "update-expense", payload: { expense: Expense }}
   | {type: "reset-app"}
+  | {type: "add-filter-category", payload : {id : Category["id"]}}
 
 export type BudgetState = {
   budget: number;
   modal: boolean;
   expenses: Expense[];
   editingId: Expense["id"];
+  currentCategory: Category["id"]
 };
 
 //mandando a localstorage el presupuesto
@@ -42,6 +44,7 @@ export const initialState: BudgetState = {
   modal: false,
   expenses: localStorageExpense(),
   editingId: "",
+  currentCategory: ""
 };
 
 //la funcion para crear un gasto con id unico
@@ -117,6 +120,9 @@ export const budgetReducer = (
       budget: 0,
       expenses:[],
     }
+  }
+  if(action.type === "add-filter-category"){
+    
   }
   return state;
 };

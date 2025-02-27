@@ -55,7 +55,7 @@ const {dispatch} = useBudget()
         leadingActions={leadingActions()}
         trailingActions={trailingActions()}
       >
-        <div className="bg-white shadow-lg   py-10 rounded-lg border-b border-gray-200 flex gap-5 items-center pr-7">
+        <div className="bg-white shadow-lg   py-10 rounded-lg border-b border-gray-200 flex gap-5 items-center pr-7 w-full">
           <div>
             <img
               src={`/icono_${cateforyInfo.icon}.svg`}
