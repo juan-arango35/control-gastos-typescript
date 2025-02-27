@@ -16,12 +16,14 @@ const ExpentsForm = () => {
   });
 
   const [error, setError] = useState("")
-  const { dispatch, state } =useBudget()
+  const [previusAmount, setPreviusAmount] = useState(0)
+  const { dispatch, state, remainingBudget } =useBudget()
 
   useEffect(() => {
     if(state.editingId){
       const editingExpenses = state.expenses.filter(currentExpense => currentExpense.id === state.editingId)[0]
       setExpense(editingExpenses)
+      setPreviusAmount(editingExpenses.amount)
     }
   },[state.editingId])
 
@@ -54,6 +56,13 @@ const ExpentsForm = () => {
       setError("Todos los campos son obligatorios")
       return
     }
+    //validar que no sea negativo que no me pase del limite
+    if ((expense.amount - previusAmount) > remainingBudget) {
+      setError("Ese gasto se sale del presupuesto")
+      return
+    }
+
+
    //agregar un nuevo gasto o actualizar
    if(state.editingId){
      dispatch({type: "update-expense", payload: { expense : {id: state.editingId, ...expense} }})
