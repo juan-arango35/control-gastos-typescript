@@ -122,7 +122,10 @@ export const budgetReducer = (
     }
   }
   if(action.type === "add-filter-category"){
-    
+    return  {
+      ...state,
+      currentCategory: action.payload.id
+    }
   }
   return state;
 };
